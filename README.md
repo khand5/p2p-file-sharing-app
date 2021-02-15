@@ -16,7 +16,7 @@ Move the fileSynchronizer.py into this directory
 ```
 $ cp fileSynchronizer.py
 ```
-Run the synchronizer, provide the tracker's **ip address** and **port**.
+Run the synchronizer, provide the tracker's **IP address** and **port**.
 ```
 $ python .\filesynchronizer.py 127.0.0.1 8080
 ``` 
