@@ -179,6 +179,10 @@ class FileSynchronizer(threading.Thread):
 
 
     def get_from_peer(self,ip,port,file):
+        #Step 1: Create a temporary client
+        #Step 2: Connect to peer with ip and port
+        #Step 3: Send name of file to peer.
+        #Step 4: Download the contents of the file sent by peer in response.
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client.connect((ip,port))
         client.sendall(bytes(file,'utf-8'))
