@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 #==============================================================================
-#description     :This is a skeleton code for programming assignment 
-#usage           :python Skeleton.py trackerIP trackerPort
-#python_version  :3.5
-#Authors         :Yongyong Wei, Rong Zheng
+#description     :A minimal command line peer-2-peer file synchronizer 
+#usage           :python fileSynchronizer.py trackerIP trackerPort
+#python_version  :3.9
+#Authors         :Danish Khan, Yongyong Wei, Rong Zheng
 #==============================================================================
 
-import socket, sys, threading, json,time,os,ssl
+import socket, sys, threading, json, time, os, ssl
 import os.path
 import glob
 import json
@@ -151,12 +151,10 @@ class FileSynchronizer(threading.Thread):
         conn -- socket object for an accepted connection from a peer
         addr -- address bound to the socket of the accepted connection
         '''
-        #YOUR CODE
         #Step 1. read the file name contained in the request through conn
         #Step 2. read content of that file(assumming binary file <4MB), you can open with 'rb'
         #Step 3. send the content back to the requester through conn
         #Step 4. close conn when you are done.
-        
         filename = repr(conn.recv(1024).decode("utf-8"))
         filename = filename[1:-1] # remove quotes
 
@@ -183,7 +181,6 @@ class FileSynchronizer(threading.Thread):
     def get_from_peer(self,ip,port,file):
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client.connect((ip,port))
-        
         client.sendall(bytes(file,'utf-8'))
 
         fw = open(file, 'wb')
@@ -234,7 +231,7 @@ class FileSynchronizer(threading.Thread):
                     # Update file mtime
                     self.files[f] = tracker[f]['mtime']
 
-                # Otherwise retrieve file
+                # If not available then retrieve file
                 elif not (f in self.files):
                     print('Found new file:',f)
                     self.get_from_peer(tracker[f]['ip'],tracker[f]['port'],str(f))
