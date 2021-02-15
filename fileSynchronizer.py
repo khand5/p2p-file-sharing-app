@@ -116,7 +116,6 @@ class FileSynchronizer(threading.Thread):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client.settimeout(180)
 
-    
         #Store the message to be sent to the tracker. 
         #Initialize to the Init message that contains port number and file info.
         #Refer to Table 1 in Instructions.pdf for the format of the Init message
@@ -128,7 +127,6 @@ class FileSynchronizer(threading.Thread):
         for f in directory_search:
             self.files[f['name']]=f['mtime']
         
-
         self.msg = json.dumps({'port':self.port,'files':directory_search})
 
         #Create a TCP socket to serve file requests from peers.
